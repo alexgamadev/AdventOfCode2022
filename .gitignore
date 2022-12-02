@@ -99,7 +99,7 @@ StyleCopReport.xml
 *.scc
 
 # Files built by Visual Studio code
-*.vscode/**/*
+*/.vscode/**/*
 
 # Chutzpah Test files
 _Chutzpah*
