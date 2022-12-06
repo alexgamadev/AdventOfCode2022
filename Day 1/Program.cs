@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
-var data = File.ReadAllLines("data.txt").ToList();
+var data = File.ReadAllLines("input.txt").ToList();
 
 var individualElfCalories = new List<int>() { 0 };
 

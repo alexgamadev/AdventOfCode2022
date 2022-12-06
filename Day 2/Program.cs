@@ -1,5 +1,5 @@
 ﻿
-List<string> rounds = File.ReadAllLines( "data.txt" ).ToList();
+List<string> rounds = File.ReadAllLines( "input.txt" ).ToList();
 int playerScoreP1 = 0;
 int playerScoreP2 = 0;
 
