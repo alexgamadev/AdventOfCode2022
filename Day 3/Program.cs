@@ -1,6 +1,10 @@
 ﻿
 int prioritySum = 0;
 List<string> rucksacks = File.ReadAllLines("input.txt").ToList();
+int groupMemberIndex = 0;
+const int MAX_GROUP_MEMBERS = 3;
+int totalBadgePriority = 0;
+string groupPotentialBadges = String.Empty;
 
 rucksacks.ForEach( rucksack => 
 {
@@ -14,12 +18,34 @@ rucksacks.ForEach( rucksack =>
     int priority = GetItemPriority( sharedItem );
     prioritySum += priority;
 
-    Console.WriteLine($"{sharedItem} with priority of {priority}");
+    // Part 2
+    if ( groupMemberIndex == 0 ) 
+    {
+        groupPotentialBadges = rucksack;
+        groupMemberIndex++;
+    } 
+    else
+    {
+        groupPotentialBadges = String.Join("", groupPotentialBadges.Intersect( rucksack ));
+        
+        if ( groupMemberIndex == MAX_GROUP_MEMBERS - 1 ) 
+        {
+            char badge = groupPotentialBadges.FirstOrDefault();
+            totalBadgePriority += GetItemPriority( badge );
+            groupPotentialBadges = String.Empty;
+            groupMemberIndex = 0;
+        } 
+        else 
+        {
+            groupMemberIndex++;
+        }
+    }
 });
 
 int GetItemPriority( char item )
 {
-    return Char.IsLower( sharedItem ) ? (int)sharedItem - 96 : (int)sharedItem - 38;
+    return Char.IsLower( item ) ? (int)item - 96 : (int)item - 38;
 }
 
 Console.WriteLine( $"Final sum priority: {prioritySum}" );
+Console.WriteLine( $"Final badge sum priority: {totalBadgePriority}" );
