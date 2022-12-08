@@ -8,13 +8,13 @@ const int MESSAGE_MARKER_LENGTH = 14;
 
 while( !(packetMarkerFound && messageMarkerFound) )
 {
-    if ( !packetMarkerFound && IsDistinctString( data, PACKET_MARKER_LENGTH) )
+    if ( !packetMarkerFound && IsDistinct( data.Substring( currentIndex, PACKET_MARKER_LENGTH ) ) )
     {
         Console.WriteLine( currentIndex + PACKET_MARKER_LENGTH );
         packetMarkerFound = true;
     }
 
-    if ( !messageMarkerFound && IsDistinctString( data, MESSAGE_MARKER_LENGTH ) )
+    if ( !messageMarkerFound && IsDistinct( data.Substring( currentIndex, MESSAGE_MARKER_LENGTH ) ) )
     {
         Console.WriteLine( currentIndex + MESSAGE_MARKER_LENGTH );
         messageMarkerFound = true;
@@ -23,9 +23,9 @@ while( !(packetMarkerFound && messageMarkerFound) )
     currentIndex++;
 }
 
-bool IsDistinctString( string str, int length )
+bool IsDistinct( string str )
 {
-    return str.Substring( currentIndex, length ).Distinct().Count() == length;
+    return str.Distinct().Count() == str.Length;
 }
 
 
